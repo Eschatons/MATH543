@@ -1,4 +1,4 @@
-function [Q, R] = efron_GSM_qr(A, varargin)
+function [Q, R] = qr_gsm(A, varargin)
 % classical gram-schmidt QR-factorization for Dr. Blomgren's MATH543 HW#3.  
 % Algorithm taken from Numerical Linear Algebra by Trefethen and Bau
 % Program written by Efron Licht. No rights reserved. Go nuts.
@@ -37,14 +37,15 @@ else
 end
 
 %% QR DECOMPOSITION
-for j=1:n
-    V(:, j) = A(:, j);
-    for i=1:(j-1)
-        R(i, j) = Q(:, i)'*A(:, j);
-        V(:, j) = V(:, j)-(R(i,j)*Q(:, i));
-    end
-    R(j, j) = norm(V(:, j));
-    Q(:, j) = V(:, j)./R(j, j);
+for i=1:n
+    V(:, i) = A(:, i);
 end
-
+for i=1:n
+    R(i, i) = norm(V(:, i));
+    Q(:, i) = V(:, i)./(R(i, i));
+    for j = (i+1):n
+        R(i, j) = Q(:, i)' * V(:, j);
+        V(:, j) = V(:, j) - ( R(i, j) * Q(:, i));
+    end
+end
 end

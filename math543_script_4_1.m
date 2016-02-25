@@ -25,7 +25,7 @@ for m=1:5
     disp(MATS{m})
     fprintf('\nis U = \n')
     disp(U{m})
-    fprintf('\nS = \n ')
+    fprintf('\nS = \n')
     disp(S{m})
     fprintf('\nV = \n')
     disp(V{m})
