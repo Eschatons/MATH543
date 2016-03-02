@@ -7,4 +7,4 @@ A = [x.^0 x.^12 x.^2 x.^3];
 
 scale = Q(257, :);
 Q = Q*diag(1 ./scale);
-plot(Q(:, 1))
+plot(Q)
