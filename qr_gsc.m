@@ -1,4 +1,4 @@
-function [Q, R] = efron_GSM_qr(A, varargin)
+function [Q, R] = qr_gsc(A, varargin)
 % classical gram-schmidt QR-factorization for Dr. Blomgren's MATH543 HW#3.  
 % Algorithm taken from Numerical Linear Algebra by Trefethen and Bau
 % Program written by Efron Licht. No rights reserved. Go nuts.
@@ -6,7 +6,7 @@ function [Q, R] = efron_GSM_qr(A, varargin)
 %% INPUT: if varargin = 'full', then computes full QR factorizaiton:
 % otherwise, computes reduced QR factorization.
 
-assert(nargin < 3, 'at most three arguments')
+assert(nargin < 3, 'at most two arguments')
 if nargin == 2
     assert(strcmp(varargin{1}, 'full'), ['second argument: \n "%s" \n not recognized. ' ...
         'did you mean "full?"'], num2str(varargin{1}))
@@ -40,9 +40,10 @@ end
 for j=1:n
     V(:, j) = A(:, j);
     for i=1:(j-1)
-        R(i, j) = Q(:, i)'*A(:, j);
-        V(:, j) = V(:, j)-(R(i,j)*Q(:, i));
+        R(i, j) = Q(:, i)' *A(:, j);
+        V(:, j) = V(:, j)-( R(i,j)*Q(:, i) );
     end
+    
     R(j, j) = norm(V(:, j));
     Q(:, j) = V(:, j)./R(j, j);
 end
