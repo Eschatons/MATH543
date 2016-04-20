@@ -29,7 +29,7 @@ title('Approximate "Q" vs exact "L" legendre polynomials');
 grid on
 
 subplot(2, 1, 2)
-plot(x, D)
+plot(x, Q-L)
 title('Difference in polynomials')
 legend('Q_0-L_0', 'Q_1-L_1', 'Q_2-L_2', 'Q_3-L_3')
 grid on
