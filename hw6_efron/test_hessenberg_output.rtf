@@ -1,0 +1,82 @@
+
+ random, non-symmetric matrices of size 2 
+
+average ||H_matlab-H_efron|| for 100 random matrices is:
+0
+max ||H_matlab-H_efron|| for 100 random matrices is: 
+0
+ random, non-symmetric matrices of size 4 
+
+average ||H_matlab-H_efron|| for 100 random matrices is:
+1.2848e-15
+max ||H_matlab-H_efron|| for 100 random matrices is: 
+4.93206e-15
+ random, non-symmetric matrices of size 8 
+
+average ||H_matlab-H_efron|| for 100 random matrices is:
+3.31279e-15
+max ||H_matlab-H_efron|| for 100 random matrices is: 
+8.50812e-15
+ random, non-symmetric matrices of size 16 
+
+average ||H_matlab-H_efron|| for 100 random matrices is:
+2.02347e-14
+max ||H_matlab-H_efron|| for 100 random matrices is: 
+2.79579e-13
+ random, non-symmetric matrices of size 32 
+
+average ||H_matlab-H_efron|| for 100 random matrices is:
+9.4522e-14
+max ||H_matlab-H_efron|| for 100 random matrices is: 
+3.31592e-12
+---------------------------------------------
+
+symmetric
+
+---------------------------------------------
+
+symmetric matrices of size 2
+
+average ||H_matlab-H_efron|| for 100 rand sym. mat is: 
+0
+max ||H_matlab-H_efron|| for 100 rand sym. mat is: 
+0
+this is because the MATLAB implementation further reduces to tridiagonal form, but mine does not.
+ EG:
+
+ note the differences are on the tridiagonal
+
+symmetric matrices of size 4
+
+average ||H_matlab-H_efron|| for 100 rand sym. mat is: 
+0.220193
+max ||H_matlab-H_efron|| for 100 rand sym. mat is: 
+2.82296
+this is because the MATLAB implementation further reduces to tridiagonal form, but mine does not.
+ EG:
+
+ note the differences are on the tridiagonal
+
+symmetric matrices of size 8
+
+average ||H_matlab-H_efron|| for 100 rand sym. mat is: 
+0.410172
+max ||H_matlab-H_efron|| for 100 rand sym. mat is: 
+4.9906
+this is because the MATLAB implementation further reduces to tridiagonal form, but mine does not.
+ EG:
+
+ note the differences are on the tridiagonal
+
+symmetric matrices of size 16
+
+average ||H_matlab-H_efron|| for 100 rand sym. mat is: 
+0.848018
+max ||H_matlab-H_efron|| for 100 rand sym. mat is: 
+9.17812
+symmetric matrices of size 32
+
+average ||H_matlab-H_efron|| for 100 rand sym. mat is: 
+1.63804
+max ||H_matlab-H_efron|| for 100 rand sym. mat is: 
+16.8214

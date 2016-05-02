@@ -1,0 +1,138 @@
+% hw #2
+
+
+the singular value decomposition of 
+ 4.1(a) 
+     3     0
+     0    -2
+
+is 
+U = 
+     1     0
+     0     1
+
+S = 
+     3     2
+
+V = 
+     1     0
+     0    -1
+
+the singular value decomposition of 
+ 4.1(b) 
+     2     0
+     0     3
+
+is 
+U = 
+     0     1
+     1     0
+
+S = 
+     3     2
+
+V = 
+     0     1
+     1     0
+
+the singular value decomposition of 
+ 4.1(c) 
+     0     2
+     0     0
+     0     0
+
+is 
+U = 
+     1     0     0
+     0     1     0
+     0     0     1
+
+S = 
+     2     0
+
+V = 
+     0    -1
+     1     0
+
+the singular value decomposition of 
+ 4.1(d) 
+     1     1
+     0     0
+
+is 
+U = 
+    1.0000         0
+         0    1.0000
+
+S = 
+    1.4142         0
+
+V = 
+    0.7071   -0.7071
+    0.7071    0.7071
+
+the singular value decomposition of 
+ 4.1(e) 
+     1     1
+     1     1
+
+is 
+U = 
+   -0.7071   -0.7071
+   -0.7071    0.7071
+
+S = 
+    2.0000    0.0000
+
+V = 
+   -0.7071    0.7071
+   -0.7071   -0.7071
+
+the singular value decomposition of 
+ 4.1(3_7) 
+     1     2
+     0     2
+
+is 
+U = 
+    0.7497   -0.6618
+    0.6618    0.7497
+
+S = 
+    2.9208    0.6847
+
+V = 
+    0.2567   -0.9665
+    0.9665    0.2567
+
+
+axis_bounds =
+
+     3
+
+
+axis_bounds =
+
+     3
+
+
+axis_bounds =
+
+     3
+
+
+axis_bounds =
+
+     3
+
+
+axis_bounds =
+
+     3
+
+
+axis_bounds =
+
+     3
+
+
