@@ -1,0 +1,235 @@
+
+rank_deficient = reshape(1:30, [], 5);
+ill_conditioned = [[2 4 8 16 32 64]; ...
+    [2 5 8 16 32 64.001]; ...
+    [2 4 8.001 16 32 64.002]; ...
+    [2 4 2^30 1 2 3]; ...
+    [2 8 12 1 1 19]; ...
+    [1 1 1 1 1 1]; ...
+    ];
+ill_conditioned_2 = [1 1; 1+(10^-10), 1-(10^-10)];
+
+fprintf('this is a rank-deficient matrix: \n')
+this is a rank-deficient matrix: 
+disp(rank_deficient)
+     1     7    13    19    25
+     2     8    14    20    26
+     3     9    15    21    27
+     4    10    16    22    28
+     5    11    17    23    29
+     6    12    18    24    30
+
+[Q00, R00] = qr_gsc(rank_deficient);
+[Warning: Input is rank deficient! This output is not to be trusted.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('qr_gsc', 'C:\Users\efron\Documents\MATLAB\MATH543\hw3_efron\qr_gsc.m', 25)" style="font-weight:bold">qr_gsc</a> (<a href="matlab: opentoline('C:\Users\efron\Documents\MATLAB\MATH543\hw3_efron\qr_gsc.m',25,0)">line 25</a>)] 
+[Q01, R01] = qr(rank_deficient);
+fprintf('it should have a QR decomposition that looks like this: \n')
+it should have a QR decomposition that looks like this: 
+fprintf('Q = \n')
+Q = 
+disp(Q01)
+   -0.1048   -0.7161   -0.3078   -0.4854    0.3334   -0.1862
+   -0.2097   -0.5013    0.7225    0.2905   -0.1915   -0.2484
+   -0.3145   -0.2864   -0.1954    0.5032    0.2240    0.6910
+   -0.4193   -0.0716   -0.1727   -0.3269   -0.7945    0.2263
+   -0.5241    0.1432   -0.4197    0.4091    0.0155   -0.6008
+   -0.6290    0.3581    0.3730   -0.3906    0.4130    0.1182
+
+fprintf('\nR = \n')
+
+R = 
+disp(R01)
+   -9.5394  -22.7478  -35.9562  -49.1646  -62.3729
+         0   -6.4450  -12.8901  -19.3351  -25.7801
+         0         0   -0.0000   -0.0000   -0.0000
+         0         0         0    0.0000   -0.0000
+         0         0         0         0    0.0000
+         0         0         0         0         0
+
+fprintf('\nbut it looks like this: \n')
+
+but it looks like this: 
+fprintf('Q = \n')
+Q = 
+disp(Q00);
+    0.1048    0.7161   -0.7339   -0.7339   -0.7339         0
+    0.2097    0.5013   -0.4670   -0.4670   -0.4670         0
+    0.3145    0.2864   -0.2836   -0.2836   -0.2836         0
+    0.4193    0.0716   -0.0751   -0.0751   -0.0751         0
+    0.5241   -0.1432    0.1501    0.1501    0.1501         0
+    0.6290   -0.3581    0.3670    0.3670    0.3670         0
+
+fprintf('R = \n')
+R = 
+disp(R00);
+    9.5394   22.7478   35.9562   49.1646   62.3729
+         0    6.4450   12.8901   19.3351   25.7801
+         0         0    0.0000  -18.6316  -24.8865
+         0         0         0   18.6316  -24.8865
+         0         0         0         0   49.7731
+         0         0         0         0         0
+
+fprintf('\n Q if off by: \n')
+
+ Q if off by: 
+offset = abs(abs(Q00)-abs(Q01));
+disp(offset.*(offset>(10^-8)))
+         0         0    0.4262    0.2485    0.4005    0.1862
+         0         0    0.2555    0.1765    0.2756    0.2484
+         0         0    0.0882    0.2196    0.0595    0.6910
+         0         0    0.0976    0.2518    0.7194    0.2263
+         0         0    0.2696    0.2590    0.1347    0.6008
+         0         0    0.0061    0.0236    0.0460    0.1182
+
+
+fprintf('this is an ill-conditioned matrix: \n')
+this is an ill-conditioned matrix: 
+disp(ill_conditioned)
+   1.0e+09 *
+
+    0.0000    0.0000    0.0000    0.0000    0.0000    0.0000
+    0.0000    0.0000    0.0000    0.0000    0.0000    0.0000
+    0.0000    0.0000    0.0000    0.0000    0.0000    0.0000
+    0.0000    0.0000    1.0737    0.0000    0.0000    0.0000
+    0.0000    0.0000    0.0000    0.0000    0.0000    0.0000
+    0.0000    0.0000    0.0000    0.0000    0.0000    0.0000
+
+[Q00, R00] = qr_gsc(ill_conditioned);
+[Q01, R01] = qr(ill_conditioned);
+[~, S, ~] = svd(ill_conditioned);
+
+fprintf('examine the singular values: \n')
+examine the singular values: 
+disp(nonzeros(S))
+   1.0e+09 *
+
+    1.0737
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+
+fprintf('\nit should have a QR decomposition that looks like this: \n')
+
+it should have a QR decomposition that looks like this: 
+fprintf('Q = \n')
+Q = 
+disp(Q01)
+   -0.4364    0.2279   -0.2785   -0.1608   -0.3926   -0.7071
+   -0.4364   -0.0380   -0.2089   -0.4025    0.7762   -0.0000
+   -0.4364    0.2279   -0.2785   -0.1608   -0.3926    0.7071
+   -0.4364    0.2279    0.8704    0.0000    0.0000   -0.0000
+   -0.4364   -0.8357   -0.0000    0.3085   -0.1264    0.0000
+   -0.2182    0.3799   -0.2089    0.8313    0.2708   -0.0000
+
+fprintf('\nR = \n')
+
+R = 
+disp(R01)
+   1.0e+08 *
+
+   -0.0000   -0.0000   -4.6862   -0.0000   -0.0000   -0.0000
+         0   -0.0000    2.4473    0.0000    0.0000    0.0000
+         0         0    9.3457   -0.0000   -0.0000   -0.0000
+         0         0         0   -0.0000   -0.0000   -0.0000
+         0         0         0         0   -0.0000   -0.0000
+         0         0         0         0         0    0.0000
+
+fprintf('\nbut it looks like this: \n')
+
+but it looks like this: 
+fprintf('Q = \n')
+Q = 
+disp(Q00);
+    0.4364   -0.2279   -0.2785    0.1608    0.3926   -0.7071
+    0.4364    0.0380   -0.2089    0.4025   -0.7762    0.0000
+    0.4364   -0.2279   -0.2785    0.1608    0.3926    0.7071
+    0.4364   -0.2279    0.8704   -0.0000   -0.0000   -0.0000
+    0.4364    0.8357   -0.0000   -0.3085    0.1264   -0.0000
+    0.2182   -0.3799   -0.2089   -0.8313   -0.2708    0.0000
+
+fprintf('R = \n')
+R = 
+disp(R00);
+   1.0e+08 *
+
+    0.0000    0.0000    4.6862    0.0000    0.0000    0.0000
+         0    0.0000   -2.4473   -0.0000   -0.0000   -0.0000
+         0         0    9.3457   -0.0000   -0.0000   -0.0000
+         0         0         0    0.0000    0.0000    0.0000
+         0         0         0         0    0.0000    0.0000
+         0         0         0         0         0    0.0000
+
+fprintf('\n Q is off by: \n')
+
+ Q is off by: 
+offset = abs(abs(Q00)-abs(Q01));
+disp(offset.*(offset>(10^-8)))
+     0     0     0     0     0     0
+     0     0     0     0     0     0
+     0     0     0     0     0     0
+     0     0     0     0     0     0
+     0     0     0     0     0     0
+     0     0     0     0     0     0
+
+
+
+
+
+fprintf('this is another ill-conditioned matrix: \n')
+this is another ill-conditioned matrix: 
+disp(ill_conditioned_2)
+    1.0000    1.0000
+    1.0000    1.0000
+
+[Q00, R00] = qr_gsc(ill_conditioned_2);
+[Q01, R01] = qr(ill_conditioned_2);
+[U, S, V] = svd(ill_conditioned_2);
+
+fprintf('examine the singular values: \n')
+examine the singular values: 
+disp(nonzeros(S))
+    2.0000
+    0.0000
+
+fprintf('\nit should have a QR decomposition that looks like this: \n')
+
+it should have a QR decomposition that looks like this: 
+fprintf('Q = \n')
+Q = 
+disp(Q01)
+   -0.7071   -0.7071
+   -0.7071    0.7071
+
+fprintf('\nR = \n')
+
+R = 
+disp(R01)
+   -1.4142   -1.4142
+         0   -0.0000
+
+fprintf('\nbut it looks like this: \n')
+
+but it looks like this: 
+fprintf('Q = \n')
+Q = 
+disp(Q00);
+    0.7071    0.7071
+    0.7071   -0.7071
+
+fprintf('R = \n')
+R = 
+disp(R00);
+    1.4142    1.4142
+         0    0.0000
+
+fprintf('\n Q is off by: \n')
+
+ Q is off by: 
+offset = abs(abs(Q00)-abs(Q01));
+disp(offset.*(offset>(10^-8)))
+     0     0
+     0     0
+
+diary off
