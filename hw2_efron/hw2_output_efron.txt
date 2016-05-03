@@ -105,34 +105,3 @@ V =
     0.2567   -0.9665
     0.9665    0.2567
 
-
-axis_bounds =
-
-     3
-
-
-axis_bounds =
-
-     3
-
-
-axis_bounds =
-
-     3
-
-
-axis_bounds =
-
-     3
-
-
-axis_bounds =
-
-     3
-
-
-axis_bounds =
-
-     3
-
-

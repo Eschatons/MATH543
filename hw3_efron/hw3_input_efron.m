@@ -1,8 +1,8 @@
 %script that tests the output of homework #3: 
-wd = pwd;
-filename = strcat(wd, '\hw3_out.txt');
-strrep(filename, '\', '/');
-diary(filename)
+% wd = pwd;
+% filename = strcat(wd, '\hw3_out.txt');
+% strrep(filename, '\', '/');
+% diary(filename)
 
 rank_deficient = reshape(1:30, [], 5);
 ill_conditioned = [[2 4 8 16 32 64]; ...
@@ -78,5 +78,4 @@ disp(R00);
 fprintf('\n Q is off by: \n')
 offset = abs(abs(Q00)-abs(Q01));
 disp(offset.*(offset>(10^-8)))
-diary off
  
